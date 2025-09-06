@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cont">
+        <div class="screen">0</div>
+        <div id="button">
+            <button class="key">C</button>
+            <button class="key">(</button>
+            <button class="key">)</button>
+            <button class="key">del</button>
+
+            <button class="key">1</button>
+            <button class="key">2</button>
+            <button class="key">3</button>
+            <button class="key">*</button>
+
+            <button class="key">4</button>
+            <button class="key">5</button>
+            <button class="key">6</button>
+            <button class="key">/</button>
+
+            <button class="key">7</button>
+            <button class="key">8</button>
+            <button class="key">9</button>
+            <button class="key">+</button>
+            
+            <button class="key">.</button>
+            <button class="key">0</button>
+            <button class="key">=</button>
+            <button class="key">-</button>
+        </div>
+        </div>
+    </body>
+    <script>
+        let string = ""
+   let a = document.querySelectorAll(".key");
+   Array.from(a).forEach((b)=>{
+    b.addEventListener("click",(e) =>{
+        try{
+        if(e.target.innerHTML== '='){
+            
+            string=eval(string)
+            
+            document.querySelector(".screen").innerHTML=string
+        }
+    
+        else if(e.target.innerHTML=='C'){
+            string=""
+        }
+        else if(e.target.innerHTML=='del')
+        {
+            string= string.slice(0,-1)
+        }
+        else
+        string = string+ e.target.innerHTML
+        console.log(string)
+        document.querySelector(".screen").innerHTML=string
+    }
+    catch(e){
+        let x = "Syntax error"
+        document.querySelector(".screen").innerHTML=x
+    }
+   
+    
+    })
+   })
+</script>
+</html>

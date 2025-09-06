@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="product.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">ShopEase</div>
+    <button class="menu-toggle" id="menuToggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products, brands and more" />
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <div class="nav-icons">
+      <button class="nav-btn" id="wish"><i class="fa-solid fa-heart"></i><span>Wishlist</span></button>
+      <button class="nav-btn" id="order"><i class="fa-solid fa-box"></i><span>Orders</span></button>
+      <button class="nav-btn" id="cart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></button>
+      <button class="nav-btn" id="login"><i class="fa-solid fa-user"></i><span>Login</span></button>
+    </div>
+  </nav>
+
+  <!-- Product Display -->
+  <div class="outer">
+    <div class="first" id="first">
+      <i class="fa-regular fa-heart"></i>
+      <div class="button">
+        <button><i class="fa-solid fa-cart-shopping"></i>Add to Cart</button>
+        <button>Buy Now</button>
+      </div>
+    </div>
+    <div class="second">
+      <div class="item-detail"></div>
+      <div class="description"></div>
+
+      <div class="policy">
+        <div class="icons">
+          <i class="fa-solid fa-arrow-turn-up"></i>
+          <p></p>
+        </div>
+        <div class="icons">
+          <i class="fa-solid fa-truck"></i>
+          <p>Free Delivery</p>
+        </div>
+        <div class="icons">
+          <i class="fa-solid fa-money-bill"></i>
+          <p>Cash on Delivery</p>
+        </div>
+        <div class="icons" id="warrenty">
+          <i class="fa-solid fa-circle-check"></i>
+          <p>1 Year Warranty</p>
+        </div>
+      </div>
+
+      <!-- Reviews -->
+      <div id="review"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 ShopEase. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a> |
+        <a href="#">Terms of Service</a> |
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let wish = document.querySelector("#wish");
+    wish.addEventListener("click", () => {
+      window.location.href = "/E-commerce/assets/wishlist.html"
+    })
+
+    const product = JSON.parse(localStorage.getItem("selectedProduct"));
+
+    window.addEventListener("load", () => {
+      if (!product) return alert("No product found in localStorage");
+      renderImage();
+      renderDetails();
+    });
+
+    function renderImage() {
+      const img = document.createElement("img");
+      img.src = product.image || (product.images?.[0] ?? "fallback.jpg");
+      document.getElementById("first").prepend(img);
+    }
+
+    function renderDetails() {
+      document.querySelector(".item-detail").innerHTML = `
+      <h2>${product.title}</h2>
+      <p><b>₹${product.price}</b></p>
+      <div class="rating">${product.rating?.rate ?? 0} &star;</div>
+      <span>${product.rating?.count ?? 0} ratings</span>
+      `;
+
+      document.querySelector(".description").innerHTML = `
+      <h2>Description</h2>
+      <p>${product.description}</p>
+      `;
+
+      document.querySelector(".icons p").innerText = product.returnPolicy || "10 Days Return";
+      document.querySelector("#warrenty p").innerText = product.warrantyInformation || "1 Year Warranty";
+
+      const reviewBox = document.getElementById("review");
+      reviewBox.innerHTML = "";
+
+      if (product.reviews && product.reviews.length) {
+        product.reviews.forEach((review) => {
+          let stars = "";
+          for (let i = 0; i < 5; i++) {
+            stars += i < review.rating
+              ? `<i class="fa-solid fa-star"></i>`
+              : `<i class="fa-regular fa-star"></i>`;
+          }
+
+          const div = document.createElement("div");
+          div.classList.add("review-card");
+          div.innerHTML = `
+          <div class="review-user">
+            <div>
+                <h4>${review.reviewerName}</h4>
+                <div class="stars">${stars}</div>
+                </div>
+                </div>
+                <p class="review-comment">“${review.comment}”</p>
+                <div class="review-footer">
+                  <span class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</span>
+                  <span class="date">${review.date?.slice(0, 10) ?? "2025-01-01"}</span>
+                  </div>
+                  `;
+          reviewBox.appendChild(div);
+        });
+      } else {
+        reviewBox.innerHTML = `<p>No reviews yet.</p>`;
+      }
+    }
+
+    let heart = document.querySelector("#first .fa-heart");
+
+    window.addEventListener("load", () => {
+      const selectedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
+      const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+      const isWishlisted = wishlist.some(item => item.id === selectedProduct?.id);
+      heart.classList.toggle("fa-solid", isWishlisted);
+      heart.classList.toggle("fa-regular", !isWishlisted);
+    });
+
+    heart.addEventListener("click", () => {
+      const selectedProduct = JSON.parse(localStorage.getItem("selectedProduct"));
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+      const index = wishlist.findIndex(item => item.id === selectedProduct.id);
+
+      if (index === -1) {
+        // Add to wishlist
+        wishlist.push(selectedProduct);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+        heart.classList.remove("fa-regular");
+        heart.classList.add("fa-solid");
+
+        // alert("Added to wishlist!");
+      } else {
+        // Remove from wishlist
+        wishlist.splice(index, 1);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+        heart.classList.remove("fa-solid");
+        heart.classList.add("fa-regular");
+      }
+    });
+
+
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

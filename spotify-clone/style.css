@@ -1,0 +1,415 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: black;
+    color: white;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+}
+body::-webkit-scrollbar-thumb{
+    background-color: #898989;
+    border-radius: 10;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    padding: 0.7rem;
+    overflow: hidden;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 350px;
+    border-radius: 1rem;
+    background-color: #000;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+    position: fixed;
+    top: 0;
+    transition: all 0.3s linear ;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #121212;
+    overflow: auto;
+    padding: 0 1.5rem;
+    margin-left: 360px;
+}
+
+.player {
+    position: absolute;
+    bottom: 0;
+    height: 75px;
+    background-color: black;
+    width: 100%;
+}
+
+.nav {
+    background-color: #121212;
+    border-radius: 1rem;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+}
+
+.nav-option {
+    line-height: 2.5rem;
+    opacity: 0.7;
+    padding-left: 0.5rem;
+}
+
+.nav-option:hover {
+    opacity: 1;
+}
+
+.nav-option i {
+    font-size: 1.25rem;
+}
+
+.nav-option a {
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.lib {
+    height: 100%;
+    background-color: #121212;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icons1 img {
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+.icons2 i {
+    font-size: 1rem;
+    margin-left: 1rem;
+    opacity: 0.7;
+}
+
+.icons2 i:hover {
+    opacity: 1;
+
+}
+
+.lib-box {
+    background-color: #232323;
+    border-radius: 0.75rem;
+    height: 8rem;
+    margin: 0.75rem 0 1.75rem 0;
+    padding: 0.5rem 1.25rem;
+}
+
+.p1 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.p2 {
+    font-size: 0.85rem;
+}
+
+button {
+    background-color: #fff;
+    border: none;
+    border-radius: 100px;
+    padding: 0.25rem 1rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    height: 2rem;
+    width: fit-content;
+}
+
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    background-color: #121212;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.div1 {
+    margin-left: 0.75rem;
+}
+
+.div2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.div2 button {
+    margin-right: 1.5rem;
+}
+
+.dark {
+    background-color: #000;
+    color: #fff;
+}
+
+.dark:hover {
+    background-color: #303030;
+}
+
+@media (max-width:1000px) {
+    .hide {
+        display: none;
+    }
+}
+
+.card {
+    background-color: #232323;
+    width: 150px;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    flex: 0 0 auto;
+    
+}
+
+.card:hover {
+    background-color: #2a2a2a;
+    cursor: pointer;
+    transform: scale(1.03);
+    transition: all 0.5s ease;
+}
+.container::-webkit-scrollbar {
+  display: none; 
+}
+.card img {
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+.container {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: start;
+}
+
+.card-tittle {
+    font-weight: 600;
+}
+
+.info {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.footer {
+    height: 6rem;
+    border-top: 2px solid #898989;
+    width: 90%;
+    margin: 4rem auto;
+}
+
+.player {
+    display: flex;
+    justify-content: center;
+}
+
+.part1 {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    margin-left:1rem ;
+}
+.part1 img{
+    height: 3rem;
+}
+.text{
+    margin: 0 1rem;
+    font-size: 0.8rem;
+}
+.icon{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.icon img{
+    height: 1.8rem;
+}
+
+.part2 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.part2 img {
+    height: 1.3rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    opacity: 0.7;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.part2 img:hover {
+    opacity: 1;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bar input {
+    width: 60%;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #ddd;
+    height: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    margin-top: -6px;
+}
+
+.part2 input {
+    margin: 0 0.5rem;
+}
+
+.part3 {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.part3 img{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-left: 1rem;
+}
+
+input[type="checkbox"], .btn_one{
+    display: none;
+}
+.btn_one{
+    font-size: 1.5rem;
+    margin: 1rem;
+    position: fixed;
+    top: 20px;
+    z-index: 10000;
+    cursor: pointer;
+}
+.btn_two{
+    font-size: 2rem;
+     position: absolute;
+     top: 20px;
+     left: 300px;
+     display: none;
+    z-index: 10001;
+}
+#check:checked ~ .sidebar{
+    left: 0px;
+    z-index: 1000;
+}
+#check:checked ~ .btn_one{
+    display: none;
+}
+#checked:checked ~ .btn_two{
+    display: block;
+   
+}
+
+@media (max-width:800px) {
+    
+    .sidebar{
+        position: absolute;
+        left: -400px;
+    }
+    .main-content{
+        margin-left: 0;
+        margin: 0;
+    }
+    .btn_one{
+        display: block;
+    }
+    .part1{
+        display: none;
+    }
+    .part3{
+        display: none;
+    }
+    .btn_two{
+        display: block;
+    }
+    .bar{
+        width: 100vw;
+    }
+}
+
+@media (max-width:400px) {
+    .player{
+        height: 100px;
+    }
+    .part2{
+        gap: 1rem;
+    }
+    .sidebar{
+        position: absolute;
+    }
+}
+
+#playPauseBtn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
